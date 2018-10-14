@@ -5,7 +5,7 @@ Wants=network-online.service nginx.service cyber-qrcode.service
 
 [Service]
 WorkingDirectory=/opt/cyberlife/service/cyber-qrcode
-ExecStart=/bin/env python2.7 swagger.py -log_file_prefix=/opt/cyberlife/logs/qrcode-swagger.log
+ExecStart=/bin/env python2.7 swagger.py -log_file_prefix=/opt/cyberlife/logs/cyber-qrcode-swagger.log
 Type=simple
 Restart=on-failure
 RestartSec=5s

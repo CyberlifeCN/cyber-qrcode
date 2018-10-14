@@ -3,7 +3,7 @@ Name:		cyber-qrcode
 Version:	%{!?version:1.0.0}%{?version}
 # ${commit_count}_git_${git_commit}
 Release:	%{!?release:1}%{?release}
-Summary:	Cloudancing CDFS AUTH API
+Summary:	Cyberlife QRcode API
 
 Group:		Application
 License:	GPL
@@ -11,7 +11,7 @@ URL:		http://www.cyber-life.cn/
 Source0:	%{name}-%{version}.tar.gz
 
 BuildRequires:	python(abi) = 2.7
-Requires:	systemd python(abi) = 2.7 mariadb-server nginx
+Requires:	systemd python(abi) = 2.7 nginx
 
 %undefine __check_files
 

@@ -4,8 +4,8 @@ After=network.target network-online.service nginx.service
 Wants=network-online.service nginx.service
 
 [Service]
-WorkingDirectory=/opt/cyberlife/service/qrcode
-ExecStart=/bin/env python2.7 index.py -log_file_prefix=/opt/cyberlife/logs/qrcode.log
+WorkingDirectory=/opt/cyberlife/service/cyber-qrcode
+ExecStart=/bin/env python2.7 index.py -log_file_prefix=/opt/cyberlife/logs/cyber-qrcode.log
 Type=simple
 Restart=on-failure
 RestartSec=5s

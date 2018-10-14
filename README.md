@@ -1,5 +1,5 @@
-# qrcode
-qrcode by tornado.
+# cyber-qrcode
+cyber-qrcode by tornado.
 make rpm package on centos7, but I think this project can run on anything linux.
 
 
@@ -34,4 +34,9 @@ pip install qrcode
 ### 安装PIL
 ```
 yum install python-imaging
+```
+
+## 安装 cyber-qrcode
+```
+cyber-qrcode-1.0.0-3_git_ed98137.x86_64.rpm
 ```
