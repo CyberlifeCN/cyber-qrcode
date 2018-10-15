@@ -23,9 +23,6 @@ import sys
 import os
 import json as JSON # 启用别名，不会跟方法里的局部变量混淆
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../"))
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../dao"))
-
 from comm import *
 from global_const import *
 from base_handler import *
@@ -38,9 +35,28 @@ from tornado_swagger import swagger
 from qrcode import *
 
 
-# /api/qrcode
+@swagger.model()
+class QrcodeReq:
+    def __init__(self, url):
+        self.url = url
+
+
+# /qrcode/api/qrcode
 class ApiQrcodeXHR(tornado.web.RequestHandler):
+    @swagger.operation(nickname='post')
     def post(self):
+        """
+            @description: 生成二维码
+
+            @param body:
+            @type body: C{QrcodeReq}
+            @in body: body
+            @required body: True
+
+            @rtype: L{Resp}
+            @raise 400: Invalid Input
+            @raise 500: Internal Server Error
+        """
         logging.info("POST %r", self.request.uri)
         logging.debug("body %r", self.request.body)
 
@@ -67,18 +83,19 @@ class ApiQrcodeXHR(tornado.web.RequestHandler):
         # im contains a PIL.Image.Image object
         img = qr.make_image()
 
-        _id = str(uuid.uuid1()).replace('-', '')
-        _date = timestamp_date(time.time())
+        _id = generate_uuid_str()
+        timestamp = current_timestamp()
+        _datehour = timestamp_to_datehour(timestamp)
         path = cur_file_dir()
         logging.info("got path %r", path)
-        if not os.path.exists(path + "/static/qrcode/" + _date):
-            os.makedirs(path + "/static/qrcode/" + _date)
+        if not os.path.exists(path + "/static/qrcode/" + _datehour):
+            os.makedirs(path + "/static/qrcode/" + _datehour)
 
         # To save it
-        img.save(path + "/static/qrcode/" + _date + "/" + _id + '.png')     # Save file
+        img.save(path + "/static/qrcode/" + _datehour + "/" + _id + '.png')     # Save file
 
         img_url = self.request.protocol + "://" + self.request.host
-        img_url = img_url + '/static/qrcode/' + _date + "/" + _id + '.png'
+        img_url = img_url + '/static/qrcode/' + _datehour + "/" + _id + '.png'
         logging.info("got img_url %r", img_url)
         self.write(img_url)
         self.finish()

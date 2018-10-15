@@ -23,9 +23,6 @@ import sys
 import os
 import json as JSON # 启用别名，不会跟方法里的局部变量混淆
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../"))
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../dao"))
-
 from comm import *
 from global_const import *
 from base_handler import *

@@ -40,3 +40,6 @@ yum install python-imaging
 ```
 rpm -Uvh cyber-qrcode-1.0.0-3_git_ed98137.x86_64.rpm --force
 ```
+
+## API文档
+http://qrcode.cyber-life.cn/swagger/spec.html

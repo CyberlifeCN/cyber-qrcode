@@ -35,7 +35,7 @@ def map():
 
     config = [
 
-        (r'/qrcode/api', getattr(api_qrcode, 'ApiQrcodeXHR')),
+        (r'/qrcode/api/qrcode', getattr(api_qrcode, 'ApiQrcodeXHR')),
         (r'/qrcode/web/index', getattr(web_qrcode, 'WebQrcodeIndexHandle')),
         (r'/image/api/verify', getattr(api_image, 'ApiImageVerifyXHR')),
 
