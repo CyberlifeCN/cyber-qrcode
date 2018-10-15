@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>QRcode</title>
+	<metahttp-equiv="X-UA-Compatible"content="IE=8"><!--以IE8模式渲染-->
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<link href="{{ static_url('leshui/css/zhuce.css') }}" type="text/css" rel="stylesheet">
+	<script type="text/javascript" src="{{ static_url('leshui/js/jquery-1.12.1.min.js') }}"></script>
+	<!--[if lte IE 8]>
+	<script src="http://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+	<![endif]-->
+</head>
+<html>
+<body>
+	<!-- socialbar -->
+	{% module Template("block-socialbar.html") %}
+	<!-- /socialbar -->
+	<!-- 导航 -->
+	<div class="nav_all">
+		<div class="nav">
+			<a href="/">QRcode</a>
+		</div>
+	</div>
+	<!-- 手机版头部 -->
+		<div class="ph_nav">
+			<h1><img src="{{ static_url('leshui/images/nav.png') }}"></h1>
+			<h2><img src="{{ static_url('leshui/images/cha.png') }}"></h2>
+		</div>
+	<!-- 导航 -->
+
+<!-- 主题内容 -->
+<div class="zc_main">
+	<h1>登录Demo（请点击换一张）</h1>
+	<form id="login-form">
+		<!-- Four -->
+			<section id="four" class="main">
+				<div class="container">
+					<div class="content">
+						<header class="major">
+							<h2>Create QR Code</h2>
+						</header>
+
+						<section>
+							<form method="post" action="/qrcode">
+								<div class="row uniform">
+									<div class="12u$">
+										<textarea name="url" id="url"
+											placeholder="Enter your URL" rows="6" required="">
+										</textarea>
+									</div>
+									<div class="12u$">
+										<ul class="actions fit">
+											<li><a onclick="SubmitReset();" class="button fit">Reset</a></li>
+											<li><a onclick="SubmitQrcode();" class="button special fit">Done</a></li>
+										</ul>
+									</div>
+								</div>
+							</form>
+						</section>
+
+						<section>
+							<div class="box alt">
+								<div class="row uniform 50%">
+									<div class="12u"><span class="image fit" id="qrcodeimg">
+										<img src="static/images/pic04.jpg" alt="" />
+									</span></div>
+								</div>
+							</div>
+						</section>
+
+					</div>
+					<a href="#footer" class="goto-next scrolly">Next</a>
+				</div>
+			</section>
+	</form>
+</div>
+<!-- 主题内容 -->
+<!-- Footer -->
+{% module Template("block-footer.html") %}
+<!-- End Footer -->
+<script src="{{ static_url('leshui/js/index.js') }}" type="text/javascript"></script>
+<!-- login -->
+<script type="text/javascript" src="{{ static_url('js/md5.min.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/json2.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/jquery.validate.min.js') }}"></script>
+<script type="text/javascript">
+	function SubmitQrcode() {
+		var url = $("#url").val();
+		var data = {'url' : url};
+		console.log(data);
+		_json = $.toJSON(data);
+
+		// $.ajax({
+		//   'type': 'POST',
+		//   'url': "/api/qrcode",
+		//   'data': data,
+		//   'success': { alert("second success"); },
+		//   'dataType': "json"
+		// });
+
+		$.post("/api/qrcode", _json, function(result){
+			console.log( "success: " + result );
+		}, 'json')
+		.done(function(result) {
+			console.log( "second success: " + result );
+		})
+		.fail(function(result) {
+			console.log( "error: " + result );
+		})
+		.always(function(result) {
+			console.log(result.responseText);
+			document.getElementById("qrcodeimg").innerHTML = '<img src="' + result.responseText + '"/>';
+		});
+	}
+
+	function SubmitReset() {
+		$("#url").val("");
+	}
+
+	function SubmitSend() {
+		var name = $("#name").val();
+		var email = $("#email").val();
+		var message = $("#message").val();
+		$.post("http://kit.7x24hs.com/api/kits", {"name":name, "email":email, "message":message}, function(result){
+			alert('Send message success!');
+			$("#name").val("");
+			$("#email").val("");
+			$("#message").val("");
+		});
+	}
+</script>
+</body>
+</html>
