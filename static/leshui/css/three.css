@@ -44,7 +44,7 @@ color: #fff;font-size: 18px;font-family: "微软雅黑"}
 
 
 /*主题内容*/
-.th_main{width:1200px;margin: auto;overflow: hidden;padding-top: 1.5%;background: #fff;}
+.th_main{width:1200px;margin: auto;overflow: visible;padding-top: 1.5%;background: #fff;}
 .ht_banner_all{width: 100%;float: left;}
 .ht_banner{width: 100%;float: left;height:372px;position: relative;}
 .ht_banner > img{width: 100%;height:372px;float: left;}
