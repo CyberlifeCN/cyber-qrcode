@@ -37,6 +37,7 @@ def map():
 
         (r'/qrcode/api/qrcode', getattr(api_qrcode, 'ApiQrcodeXHR')),
         (r'/qrcode/web/index', getattr(web, 'WebQrcodeIndexHandle')),
+        (r'/', getattr(web, 'WebQrcodeIndexHandle')),
         (r'/image/api/verify', getattr(api_image, 'ApiImageVerifyXHR')),
         (r'/image/web/index', getattr(web, 'WebImageIndexHandle')),
 

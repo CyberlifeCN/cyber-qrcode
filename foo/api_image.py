@@ -73,5 +73,5 @@ class ApiImageVerifyXHR(tornado.web.RequestHandler):
 
         logging.info("Success[200]: generate image-verify code=[%r] img_url=[%r]", _code, img_url)
         self.set_status(200) # Success
-        self.write(JSON.dumps({"errCode":200,"errMsg":"Success","code":_code,"imgUrl":img_url}))
+        self.write(JSON.dumps({"errCode":200,"errMsg":"Success","code":_code,"imageUrl":img_url}))
         self.finish()
