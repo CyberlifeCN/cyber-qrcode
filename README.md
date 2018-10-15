@@ -12,8 +12,8 @@ http://qrcode.cyber-life.cn/swagger/spec.html
 
 
 ## Demo
-http://qrcode.cyber-life.cn/qrcode/web/index
-http://qrcode.cyber-life.cn/image/web/index
+* http://qrcode.cyber-life.cn/qrcode/web/index
+* http://qrcode.cyber-life.cn/image/web/index
 
 
 ## 安装软件包
