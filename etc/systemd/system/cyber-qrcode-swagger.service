@@ -1,7 +1,7 @@
 [Unit]
-Description=CyberLife QRcode API Doc(Swagger) Service
-After=network.target network-online.service nginx.service cyber-qrcode.service
-Wants=network-online.service nginx.service cyber-qrcode.service
+Description=CyberLife QRcode Doc(Swagger) Service
+After=nginx.service cyber-qrcode.service
+Wants=nginx.service cyber-qrcode.service
 
 [Service]
 WorkingDirectory=/opt/cyberlife/service/cyber-qrcode

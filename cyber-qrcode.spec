@@ -1,5 +1,5 @@
 Name:		cyber-qrcode
-# 1.9.<Build>
+# 1.0.<Build>
 Version:	%{!?version:1.0.0}%{?version}
 # ${commit_count}_git_${git_commit}
 Release:	%{!?release:1}%{?release}
@@ -26,23 +26,14 @@ make
 make install DESTDIR=%{buildroot}
 
 %post
-systemctl daemon-reload
+/usr/bin/systemctl daemon-reload
 
-for svc in cyber-qrcode cyber-qrcode-swagger
-do
-	systemctl enable cyber-$svc.service
-	systemctl restart cyber-$svc.service
-done
-
+systemctl enable cyber-qrcode.service
+systemctl restart cyber-qrcode.service
+systemctl enable cyber-qrcode-swagger.service
+systemctl restart cyber-qrcode-swagger.service
 systemctl enable nginx.service
 systemctl restart nginx.service
-
-%preun
-for svc in auth-swagger auth-api ssdb-auth
-do
-	systemctl stop cyber-$svc.service
-	systemctl disable cyber-$svc.service
-done
 
 %postun
 /usr/bin/systemctl daemon-reload

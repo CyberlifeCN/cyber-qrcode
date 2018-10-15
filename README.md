@@ -38,5 +38,5 @@ yum install python-imaging
 
 ## 安装 cyber-qrcode
 ```
-cyber-qrcode-1.0.0-3_git_ed98137.x86_64.rpm
+rpm -Uvh cyber-qrcode-1.0.0-3_git_ed98137.x86_64.rpm --force
 ```

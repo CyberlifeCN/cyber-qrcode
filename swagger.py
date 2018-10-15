@@ -13,9 +13,6 @@ from tornado.web import RequestHandler, HTTPError
 from tornado_swagger import swagger
 
 from foo import comm
-from foo import api_client
-from foo import api_auth
-from foo import api_client_auth
 
 
 DEFAULT_REPRESENTATION = "application/json"

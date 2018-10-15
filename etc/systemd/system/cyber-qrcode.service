@@ -1,7 +1,7 @@
 [Unit]
-Description=CyberLife QRcode API Service
-After=network.target network-online.service nginx.service
-Wants=network-online.service nginx.service
+Description=CyberLife QRcode Service
+After=nginx.service
+Wants=nginx.service
 
 [Service]
 WorkingDirectory=/opt/cyberlife/service/cyber-qrcode
