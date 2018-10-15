@@ -38,4 +38,10 @@ from qrcode import *
 class WebQrcodeIndexHandle(tornado.web.RequestHandler):
     def get(self):
         logging.info("GET %r", self.request.uri)
-        self.render('index.html')
+        self.render('qrcode.html')
+
+
+class WebImageIndexHandle(tornado.web.RequestHandler):
+    def get(self):
+        logging.info("GET %r", self.request.uri)
+        self.render('image-verify.html')

@@ -27,8 +27,8 @@ import tornado.web
 from foo import comm
 from foo import base_handler
 from foo import api_qrcode
-from foo import web_qrcode
 from foo import api_image
+from foo import web
 
 
 def map():
@@ -36,8 +36,9 @@ def map():
     config = [
 
         (r'/qrcode/api/qrcode', getattr(api_qrcode, 'ApiQrcodeXHR')),
-        (r'/qrcode/web/index', getattr(web_qrcode, 'WebQrcodeIndexHandle')),
+        (r'/qrcode/web/index', getattr(web, 'WebQrcodeIndexHandle')),
         (r'/image/api/verify', getattr(api_image, 'ApiImageVerifyXHR')),
+        (r'/image/web/index', getattr(web, 'WebImageIndexHandle')),
 
         # comm
         ('.*', getattr(base_handler, 'UrlNotFoundXHR'))

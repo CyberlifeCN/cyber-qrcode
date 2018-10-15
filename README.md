@@ -7,6 +7,15 @@ make rpm package on centos7, but I think this project can run on anything linux.
 * 生成图片校验码
 
 
+## REST API文档
+http://qrcode.cyber-life.cn/swagger/spec.html
+
+
+## Demo
+http://qrcode.cyber-life.cn/qrcode/web/index
+http://qrcode.cyber-life.cn/image/web/index
+
+
 ## 安装软件包
 ### 安装 nginx
 ```
@@ -44,6 +53,3 @@ yum install python-imaging
 ```
 rpm -Uvh cyber-qrcode-1.0.0-3_git_ed98137.x86_64.rpm --force
 ```
-
-## API文档
-http://qrcode.cyber-life.cn/swagger/spec.html
