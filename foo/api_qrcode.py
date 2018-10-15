@@ -87,7 +87,7 @@ class ApiQrcodeXHR(tornado.web.RequestHandler):
         timestamp = current_timestamp()
         _datehour = timestamp_to_datehour(timestamp)
         path = cur_file_dir()
-        logging.info("got path %r", path)
+        logging.debug("got path %r", path)
         if not os.path.exists(path + "/static/qrcode/" + _datehour):
             os.makedirs(path + "/static/qrcode/" + _datehour)
 
@@ -96,6 +96,7 @@ class ApiQrcodeXHR(tornado.web.RequestHandler):
 
         img_url = self.request.protocol + "://" + self.request.host
         img_url = img_url + '/static/qrcode/' + _datehour + "/" + _id + '.png'
-        logging.info("got img_url %r", img_url)
-        self.write(img_url)
+        logging.info("generate qrcode from=[%r] img_url=[%r]", _url, img_url)
+        self.set_status(200) # Success
+        self.write(JSON.dumps({"errCode":200,"errMsg":"Success","rs":img_url}))
         self.finish()
