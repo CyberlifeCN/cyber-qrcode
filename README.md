@@ -2,6 +2,10 @@
 cyber-qrcode by tornado.
 make rpm package on centos7, but I think this project can run on anything linux.
 
+## 功能
+* 由输入的URL生成二维码
+* 生成图片校验码
+
 
 ## 安装软件包
 ### 安装 nginx

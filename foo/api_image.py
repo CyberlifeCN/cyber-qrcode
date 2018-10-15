@@ -35,28 +35,43 @@ from tornado_swagger import swagger
 from image_verify import generate_verify_image
 
 
+@swagger.model()
+class ImageResp:
+    def __init__(self, errCode, errMsg, code, imgUrl):
+        self.errCode = errCode
+        self.errMsg = errMsg
+        self.code = code
+        self.imgUrl = imgUrl
+
+
 # /api/image-verify
 class ApiImageVerifyXHR(tornado.web.RequestHandler):
-    def get(self):
-        logging.info("GET %r", self.request.uri)
+    @swagger.operation(nickname='post')
+    def post(self):
+        """
+            @description: 生成图片校验码
 
-        _id = str(uuid.uuid1()).replace('-', '')
-        _date = timestamp_date(time.time())
+            @rtype: L{ImageResp}
+            @raise 400: Invalid Input
+            @raise 500: Internal Server Error
+        """
+        logging.info("POST %r", self.request.uri)
+
+        _id = generate_uuid_str()
+        timestamp = current_timestamp()
+        _datehour = timestamp_to_datehour(timestamp)
         path = cur_file_dir()
-        logging.info("got path %r", path)
-        if not os.path.exists(path + "/static/image-verify/" + _date):
-            os.makedirs(path + "/static/image-verify/" + _date)
+        logging.debug("got path %r", path)
+        if not os.path.exists(path + "/static/image-verify/" + _datehour):
+            os.makedirs(path + "/static/image-verify/" + _datehour)
 
         # To save it
-        filepath = path + "/static/image-verify/" + _date + "/" + _id + '.gif'
-
-        mstream, strs = generate_verify_image(save_img=True, filepath=filepath)
-        logging.info("got code %r", strs)
-
+        filepath = path + "/static/image-verify/" + _datehour + "/" + _id + '.gif'
+        mstream, _code = generate_verify_image(save_img=True, filepath=filepath)
         img_url = self.request.protocol + "://" + self.request.host
-        img_url = img_url + '/static/image-verify/' + _date + "/" + _id + '.gif'
-        logging.info("got img_url %r", img_url)
+        img_url = img_url + '/static/image-verify/' + _datehour + "/" + _id + '.gif'
 
+        logging.info("Success[200]: generate image-verify code=[%r] img_url=[%r]", _code, img_url)
         self.set_status(200) # Success
-        self.write(JSON.dumps({"err_code":200,"err_msg":"Success","code":strs,"image_url":img_url}))
+        self.write(JSON.dumps({"errCode":200,"errMsg":"Success","code":_code,"imgUrl":img_url}))
         self.finish()
