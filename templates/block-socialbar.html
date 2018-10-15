@@ -1,0 +1,36 @@
+<!-- 顶部 -->
+  <div class="top">
+    <div class="top_main">
+      <span>
+        {% if is_login %}
+        <a href="/portal/auth/logout">登出</a>
+        {% else %}
+        <a href="/portal/auth/login">登录</a>|<a href="/portal/auth/register">注册</a>
+        {% end %}
+      </span>
+      <i id="pc_dw"><a href="/portal/newsup/account">会员中心</a>|<a href="/portal/newsup/account">查看订单</a>|<a href="/portal/newsup/contact">联系我们 </a></i>
+      <i id="dw"><span>北京</span><img src="{{ static_url('leshui/images/up.png') }}"></i>
+    </div>
+  </div>
+<div class="search_all">
+  <div class="search">
+    <div class="nav_logo">
+      <img src="{{ static_url('leshui/images/logo.png') }}">
+      <h1>乐水游-中国水利风景区综合服务平台</h1>
+    </div>
+    <div class="search_main">
+      <input type="text" id="searchText" class="search_sr" placeholder="输入关键词"  />
+      <input type="button" value="搜索" id="s-btn" class="search_sub" />
+    </div>
+
+  </div>
+</div>
+<script type="text/javascript">
+  // $("#searchText").val("输入关键词");
+  $("#s-btn").on('click',function(){
+    var q = $("#searchText").val();
+        q = encodeURI(encodeURI(q)); 
+    location.href="/portal/newsup/search?q="+q;
+  });
+</script>
+<!-- 顶部 -->
