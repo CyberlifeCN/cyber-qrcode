@@ -31,7 +31,7 @@ do
 	scp $dir/$file root@${ip}:/tmp &&
 	ssh root@${ip} "systemctl stop cyber-qrcode; rpm -Uvh --replacepkgs --force /tmp/$file && rm -f /tmp/$file && echo success" || { echo "$ip failed" ; continue; }
 
-	for svc in auth-api auth-swagger ssdb-auth
+	for svc in qrcode qrcode.swagger
 	do
 		ssh root@${ip} "systemctl enable cyber-$svc && systemctl start cyber-$svc"
 	done

@@ -1,7 +1,7 @@
 Name:		cyber-qrcode
 # 1.0.<Build>
 Version:	%{!?version:1.0.0}%{?version}
-# ${commit_count}_git_${git_commit}
+# ${commit_count}_${git_commit}
 Release:	%{!?release:1}%{?release}
 Summary:	Cyberlife QRcode API
 
