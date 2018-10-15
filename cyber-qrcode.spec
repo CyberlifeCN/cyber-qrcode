@@ -41,6 +41,7 @@ systemctl restart nginx.service
 %files
 /etc/cyberlife/*
 /etc/nginx/location.d/*
+/etc/nginx/conf.d/*
 /opt/cyberlife/service/cyber-qrcode/*
 /etc/systemd/system/*
 
