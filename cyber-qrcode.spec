@@ -28,6 +28,8 @@ make install DESTDIR=%{buildroot}
 %post
 /usr/bin/systemctl daemon-reload
 
+mkdir -p /opt/cyberlife/logs
+
 systemctl enable cyber-qrcode.service
 systemctl restart cyber-qrcode.service
 systemctl enable cyber-qrcode-swagger.service
